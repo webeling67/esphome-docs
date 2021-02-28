@@ -21,7 +21,9 @@ def setup(app):
     if not os.path.isfile(SCHEMA_PATH):
         logger = logging.getLogger(__name__)
         logger.info(f'{SCHEMA_PATH} not found. Not documenting schema.')
-        return
+        return {"version": "1.0.0",
+                "parallel_read_safe": True,
+                "parallel_write_safe": True}
 
     app.connect('doctree-resolved', doctree_resolved)
     app.connect('build-finished', build_finished)
